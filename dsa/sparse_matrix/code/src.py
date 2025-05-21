@@ -1,13 +1,6 @@
 class SparseMatrix:
     def __init__(self, numRows=None, numCols=None, filePath=None):
-        """
-        Initialize sparse matrix either from file or with dimensions
-        
-        Args:
-            numRows: Number of rows (if creating empty matrix)
-            numCols: Number of columns (if creating empty matrix)
-            filePath: Path to matrix file (if loading from file)
-        """
+     
         self.rows = 0
         self.cols = 0
         self.matrix = {}  # Dictionary of dictionaries: {row: {col: value}}
@@ -38,11 +31,11 @@ class SparseMatrix:
                     # Remove all whitespace
                     line = ''.join(line.split())
                     
-                    # Validate line format
+                    
                     if not (line.startswith('(') and line.endswith(')')):
                         raise ValueError(f"Invalid entry format: {line}")
                     
-                    # Remove parentheses and split
+                    
                     content = line[1:-1].split(',')
                     if len(content) != 3:
                         raise ValueError(f"Invalid entry format: {line}")
@@ -83,10 +76,10 @@ class SparseMatrix:
             raise IndexError("Index out of bounds")
         
         if value == 0:
-            # Remove zero values from storage
+            
             if currRow in self.matrix and currCol in self.matrix[currRow]:
                 del self.matrix[currRow][currCol]
-                if not self.matrix[currRow]:  # Remove empty row
+                if not self.matrix[currRow]:  
                     del self.matrix[currRow]
         else:
             if currRow not in self.matrix:
@@ -162,7 +155,7 @@ class SparseMatrix:
         return result
     
     def save_to_file(self, filePath):
-        """Save matrix to file in the same format"""
+       
         with open(filePath, 'w') as f:
             f.write(f"rows={self.rows}\n")
             f.write(f"cols={self.cols}\n")
@@ -202,7 +195,7 @@ def main():
         elif choice == 3:
             result = matrix1.multiply(matrix2)
         
-        # Save result
+        # Save the result
         result.save_to_file(output_file)
         print(f"Operation completed successfully. Result saved to {output_file}")
     
